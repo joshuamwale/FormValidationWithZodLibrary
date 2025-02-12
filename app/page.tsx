@@ -1,6 +1,6 @@
 "use client";
 //"use client" optimizes client-side rendering performance for this component
-import Form from "./Form";  //import Form component into app/page.tsx
+import Form from "../components/formComponent";  //import Form component into app/page.tsx
 
 function Home() {
   return (
