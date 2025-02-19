@@ -1,6 +1,6 @@
 "use client"; //using app router and using in client components
 
-import { useState } from "react";
+
 import useStore from "@/stores/registrationStore";
 import { useForm } from "react-hook-form"; //this hook is for helping us manage form state and validations
 import { FormData } from "@/types";        //the structure or shape of the form data
