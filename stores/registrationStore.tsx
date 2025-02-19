@@ -1,5 +1,5 @@
 // stores/registrationStore.tsx
-import { create } from 'zustand';
+import { create }  from 'zustand';
 
 interface FormData {
   email: string;
