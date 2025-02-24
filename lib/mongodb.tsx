@@ -13,17 +13,9 @@ if (!MONGODB_DB) {
 
 let clientPromise: Promise<MongoClient>; //awaiting the MongoDB connection
 
-if (process.env.NODE_ENV === 'development') {
-  // Development mode, using a global variable to avoid reconnecting during reload
-  if (!global._mongoClientPromise) {
-    global._mongoClientPromise = MongoClient.connect(MONGODB_URI); 
-
-  }
-  clientPromise = global._mongoClientPromise;
-} else {
   // Production, use the default MongoClient connection
-  clientPromise = MongoClient.connect(MONGODB_URI);
-}
+clientPromise = MongoClient.connect(MONGODB_URI);
+
 
 export async function connectToDatabase() {
   const client = await clientPromise;
