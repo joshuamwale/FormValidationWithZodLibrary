@@ -14,7 +14,7 @@ interface RegistrationStore {
 }
 
 const useStore = create<RegistrationStore>((set) => {
-  const storedData = localStorage.getItem("formData");
+  const storedData = sessionStorage.getItem("formData");
 
   return {
     formData: storedData ? JSON.parse(storedData) : [],
@@ -23,7 +23,7 @@ const useStore = create<RegistrationStore>((set) => {
         const updatedData = [...state.formData, data];
 
         // saving the updated data to localStorage localStorage.setItem
-        localStorage.setItem("formData", JSON.stringify(updatedData));
+        sessionStorage.setItem("formData", JSON.stringify(updatedData));
         return { formData: updatedData };
       });
     },
