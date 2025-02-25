@@ -11,11 +11,11 @@ if (!MONGODB_DB) {
   throw new Error('Define the MONGODB_DB environment variable');
 }
 
-let clientPromise: Promise<MongoClient>; //awaiting the MongoDB connection
+//awaiting the MongoDB connection
+//using const since clientPromise is only assigned once (prefer-const linting rule in ESLint)
+// In Production, use the default MongoClient connection
 
-  // Production, use the default MongoClient connection
-clientPromise = MongoClient.connect(MONGODB_URI);
-
+const clientPromise: Promise<MongoClient> = MongoClient.connect(MONGODB_URI);
 
 export async function connectToDatabase() {
   const client = await clientPromise;

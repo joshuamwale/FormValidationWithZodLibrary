@@ -1,3 +1,5 @@
+//app/api/form/route.tsx: holds the Route Handler for the API endpoint
+
 import { NextRequest, NextResponse } from 'next/server' //NextRequest and NextResponse-- extended versions of the native Request & Response objects--they come with extra utilities
 import { z } from 'zod'; //importing Zod for server-side validation
 import { FormData } from "@/types"; //a type definition for FormData exists in types.tsx

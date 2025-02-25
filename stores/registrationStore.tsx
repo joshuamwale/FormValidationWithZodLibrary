@@ -1,4 +1,4 @@
-// stores/registrationStore.tsx
+"use client";
 import { create }  from 'zustand';
 
 interface FormData {
@@ -14,16 +14,25 @@ interface RegistrationStore {
 }
 
 const useStore = create<RegistrationStore>((set) => {
-  const storedData = sessionStorage.getItem("formData");
+  let initialData: FormData[] = [];
+
+   if (typeof window !== 'undefined') {
+    // Only execute in the browser
+    const storedData = sessionStorage.getItem("formData");
+    initialData = storedData ? JSON.parse(storedData) : [];
+  }
 
   return {
-    formData: storedData ? JSON.parse(storedData) : [],
+    formData: initialData,
     addFormData: (data) => {
       set((state) => {
         const updatedData = [...state.formData, data];
 
-        // saving the updated data to localStorage localStorage.setItem
-        sessionStorage.setItem("formData", JSON.stringify(updatedData));
+        // saving the updated data to sessionStorage
+        if (typeof window !== 'undefined') {
+          // Only execute in the browser
+          sessionStorage.setItem("formData", JSON.stringify(updatedData));
+        }
         return { formData: updatedData };
       });
     },
