@@ -28,7 +28,8 @@ jobs:
       - name: Build
         run: npm run build # build command
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }} # This line is crucial!
+          MONGODB_URI: ${{ secrets.MONGODB_URI }} # The mongodb uri
+          MONGODB_DB: ${{ secrets.MONGODB_DB }} # The specific database in the cluster
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
