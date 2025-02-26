@@ -19,6 +19,12 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+           node-version: 20.17.19
+      - name: Install dependencies
+        run: npm install
       - name: Build
         run: npm run build # build command
         env:
