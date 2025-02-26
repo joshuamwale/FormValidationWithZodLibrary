@@ -19,6 +19,8 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Clean Git config
+        run: git config --unset-all http.https://github.com/.extraheader || true
       - name: Set up Node.js environment
         uses: actions/setup-node@v3
         with:
