@@ -19,21 +19,6 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Clean Git config
-        run: git config --unset-all http.https://github.com/.extraheader || true
-      - name: Set up Node.js environment
-        uses: actions/setup-node@v3
-        with:
-           node-version: 22.13.1
-      - name: Clean npm cache
-        run: npm cache clean --force
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build # build command
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }} # The mongodb uri
-          MONGODB_DB: ${{ secrets.MONGODB_DB }} # The specific database in the cluster
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -45,7 +30,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: ".next" # Built app content directory - optional
+          output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
