@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server' //NextRequest and NextResponse-- extended versions of the native Request & Response objects--they come with extra utilities
 import { z } from 'zod'; //importing Zod for server-side validation
-import { FormData } from "@/types"; //a type definition for FormData exists in types.tsx
+import { FormData } from "@/types"; //a type definition for FormData exists in types.ts
 import { FormSchema } from '@/schemas/formSchema'; //importing the standard form schema from schemas (validation consistency across client and server)
 import { connectToDatabase } from '@/lib/mongodb';
 
