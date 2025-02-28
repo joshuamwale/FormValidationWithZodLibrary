@@ -35,6 +35,9 @@ jobs:
         env: 
            MONGODB_DB: ${{ secrets.MONGODB_DB }}
            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+           # Define the API URL for production
+           NEXT_PUBLIC_API_URL: "https://wonderful-tree-0ca8c1010.6.azurestaticapps.net"
           
 
   close_pull_request_job:
