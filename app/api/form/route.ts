@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       const collection = db.collection('Customers'); //specifying my collection name
 
       //inserting the form data into the MongoDB collection
+      //...data : copy all the properties from the data object into the new document (mongodb document)
       const result = await collection.insertOne({
         ...data,
         createdAt: new Date(),
