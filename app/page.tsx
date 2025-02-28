@@ -1,5 +1,4 @@
 "use client";
-import DataTable from "@/components/dataTable";
 //"use client" optimizes client-side rendering performance for this component
 import Form from "../components/formComponent";  //import Form component into app/page.tsx
 
