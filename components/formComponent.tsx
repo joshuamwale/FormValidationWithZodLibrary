@@ -26,8 +26,11 @@ function Form() {
       //Adding form data to Zustand store: RegistrationStore
       addFormData(data); 
 
+      //use the dynamic API url
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
       //sending the form data to the route handler(API)
-      const response = await fetch('/api/form', {
+      const response = await fetch(`${apiUrl}/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
