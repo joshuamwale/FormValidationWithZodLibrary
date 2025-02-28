@@ -30,7 +30,7 @@ function Form() {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
       //sending the form data to the route handler(API)
-      const response = await fetch(`${apiUrl}/form`, {
+      const response = await fetch(`${apiUrl}/api/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
