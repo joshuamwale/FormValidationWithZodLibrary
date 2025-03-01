@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "route": "/api/form",
+      "methods": [
+        "post",
+        "get",
+        "put",
+        "delete",
+        "options",
+        "patch",
+        "trace",
+        "connect",
+        "head"
+      ],
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  ]
+}
