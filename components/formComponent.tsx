@@ -21,13 +21,13 @@ function Form() {
   const addFormData = useStore((state) => state.addFormData);
 
   const onSubmit = async (data: FormData) => {
-      console.log("Form validation successful, sending data", data);
+    console.log("Form validation successful, sending data", data);
 
-      //Adding form data to Zustand store: RegistrationStore
-      addFormData(data); 
+    //Adding form data to Zustand store: RegistrationStore
+    addFormData(data); 
 
-      //use the dynamic API url
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    //use the dynamic API url
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       
 
       //sending the form data to the route handler(API)
