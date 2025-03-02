@@ -4,8 +4,7 @@ import { NextRequest, NextResponse } from 'next/server' //NextRequest and NextRe
 import { z } from 'zod'; //importing Zod for server-side validation
 import { FormData } from "@/types"; //a type definition for FormData exists in types.ts
 import { FormSchema } from '@/schemas/formSchema'; //importing the standard form schema from schemas (validation consistency across client and server)
-import { connectToDatabase } from '@/lib/mongodb';
-
+import { connectMongoDB } from '@/lib/mongodb';
 export async function POST(req: NextRequest) {
     try {
       const data: FormData = await req.json(); // Parsing (analyze and breakdown) the incoming form data
@@ -21,7 +20,7 @@ export async function POST(req: NextRequest) {
       console.log("Form data is valid, processing to save to MongoDB...")
   
       // form data save to the database
-      const { db } = await connectToDatabase(); //connect to mongodb
+      const { db } = await connectMongoDB(); //connect to mongodb
       const collection = db.collection('Customers'); //specifying my collection name
 
       //inserting the form data into the MongoDB collection

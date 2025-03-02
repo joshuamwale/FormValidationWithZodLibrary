@@ -12,13 +12,13 @@ if (!MONGODB_DB) {
 }
 
 //awaiting the MongoDB connection
-//using const since clientPromise is only assigned once (prefer-const linting rule in ESLint)
 // In Production, use the default MongoClient connection
+
 
 const clientPromise: Promise<MongoClient> = MongoClient.connect(MONGODB_URI);
 
-export async function connectToDatabase() {
+export async function connectMongoDB() {
   const client = await clientPromise;
   const db = client.db(MONGODB_DB);
   return {client, db };
-}
+} 
