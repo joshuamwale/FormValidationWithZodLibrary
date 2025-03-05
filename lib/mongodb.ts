@@ -14,7 +14,6 @@ if (!MONGODB_DB) {
 //awaiting the MongoDB connection
 // In Production, use the default MongoClient connection
 
-
 const clientPromise: Promise<MongoClient> = MongoClient.connect(MONGODB_URI);
 
 export async function connectMongoDB() {
