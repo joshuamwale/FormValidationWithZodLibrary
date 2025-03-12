@@ -1,0 +1,51 @@
+# Starter pipeline
+
+trigger:
+- main
+
+pool:
+ vmImage: 'ubuntu-latest'         #use latest Ubuntu image as the build & deploy agent
+
+variables:
+  imageName: 'form-validation-with-zod-library'
+  acrName: 'tellisticcr'
+  acrServiceConnection: '<my-acr-service-connection>'  # Service connection requires elevated Azure permission to create
+
+stages:
+  - stage: Build
+    displayName: 'Build Docker Image'
+    jobs:                                   #jobs to run within this stage
+      - job: Build
+        displayName: 'Build Docker Image Job'
+        steps:                              #individual tasks to run in this job
+        - task: UseNode@1                   # a task to install & use Node.js 18 version
+          inputs:
+            version: '18.x'
+          displayName: 'Install Node.js 18'
+
+        - script: |                             #run a script install dependencies & build the app
+              npm install
+              npm run build
+          displayName: 'Build Next.js app'
+
+        - task: Docker@2                         #uses Docker task v2
+          inputs:
+            containerRegistry: $(acrServiceConnection)         #specify acr service connection
+            repository: $(imageName)                           #name of the Docker repo
+            command: 'buildAndPush'                            #this command builds the docker image & pushes it to the acr
+            Dockerfile: 'Dockerfile'                        #path to the dockerfile the pipeline
+            tags: |
+                latest
+
+  - stage: Deploy   #2nd stage
+    displayName: 'Deploy to tellisticcr'
+    dependsOn: Build                               #run only after the Build stage completes
+    jobs:
+      - job: Deploy
+        displayName: 'Deploy Docker Image'
+        steps:
+          - script: |                                 #run a shell script & print a msg 2 the console
+              echo "Deployment to tellisticcr completed."
+            displayName: 'Deployment Complete'
+
+
