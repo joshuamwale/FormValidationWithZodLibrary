@@ -11,8 +11,7 @@ variables:
   acrName: 'tellisticcr'
   acrServiceConnection: 'Tellistic Docker Container Registry'  # Service connection requires elevated Azure permission to create
   MONGODB_URI: $(MONGODB_URI)
-  MONGODB_DB:  $(MONGODB_DB)
-  #group: 'NextJS-Env'                           #variable group containing mongodb_uri and mongodb_db
+  MONGODB_DB: $(MONGODB_DB)
 stages:
   - stage: Build
     displayName: 'Build Docker Image'
