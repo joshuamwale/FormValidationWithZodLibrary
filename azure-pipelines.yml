@@ -20,7 +20,7 @@ stages:
         steps:                              #individual tasks to run in this job
         - task: UseNode@1                   # a task to install & use Node.js 18 version
           inputs:
-            version: '15.1.7'
+            version: '18.20.7'
           displayName: 'Install Node.js'
 
         - script: |                             #run a script install dependencies & build the app
