@@ -13,13 +13,8 @@ RUN npm install
 COPY . .
 
 #caputure the all the build arguments
-
 ARG MONGODB_URI
 ARG MONGODB_DB
-
-#set them as environment variables
-ENV MONGODB_URI=$MONGODB_URI
-ENV MONGODB_DB=$MONGODB_DB
   
 #build the Next.js app
 RUN npm run build
