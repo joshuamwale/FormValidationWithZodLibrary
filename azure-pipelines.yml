@@ -33,20 +33,19 @@ stages:
             containerRegistry: $(acrServiceConnection)         #specify acr service connection
             repository: $(imageName)                           #name of the Docker repo
             command: 'buildAndPush'                            #this command builds the docker image & pushes it to the acr
-            Dockerfile: 'Dockerfile'                           #path to the dockerfile the pipeline
-            arguments: '--build-arg MONGODB_URI=$(MONGODB_URI) --build-arg MONGODB_DB=$(MONGODB_DB)'                     
+            Dockerfile: 'Dockerfile'                           #path to the dockerfile the pipeline                    
             tags: |
                 latest
 
   - stage: Deploy   #2nd stage
-    displayName: 'Deploy to tellisticcr'
+    displayName: 'Deploy to Azure Container Apps'
     dependsOn: Build                               #run only after the Build stage completes
     jobs:
       - job: Deploy
         displayName: 'Deploy Docker Image'
         steps:
           - script: |                                 #run a shell script & print a msg 2 the console
-              echo "Deployment to tellisticcr completed."
+              echo "Deployment to ACA completed."
             displayName: 'Deployment Complete'
 
 
