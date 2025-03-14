@@ -10,11 +10,7 @@ variables:
   imageName: 'form-validation-with-zod-library'
   acrName: 'tellisticcr'
   acrServiceConnection: 'Tellistic Docker Container Registry'  # Service connection requires elevated Azure permission to create
-<<<<<<< HEAD
   group: 'NextJS-Env'                           #variable group containing mongodb_uri and mongodb_db
-=======
-
->>>>>>> 61924525e06a4b06fd1cfee4bb209745379fcc77
 stages:
   - stage: Build
     displayName: 'Build Docker Image'
@@ -38,7 +34,7 @@ stages:
             repository: $(imageName)                           #name of the Docker repo
             command: 'buildAndPush'                            #this command builds the docker image & pushes it to the acr
             Dockerfile: 'Dockerfile'                           #path to the dockerfile the pipeline
-            arguments: '--build-arg MONGODB_URI=$(MONGODB_URI) --build-arg MONGODB_DB=$(MONGODB_DB)'                      
+            arguments: '--build-arg MONGODB_URI=$(MONGODB_URI) --build-arg MONGODB_DB=$(MONGODB_DB)'                     
             tags: |
                 latest
 
