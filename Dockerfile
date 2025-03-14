@@ -11,10 +11,6 @@ RUN npm install
 
 #copy the rest of the application code
 COPY . .
-
-#caputure the all the build arguments
-ARG MONGODB_URI
-ARG MONGODB_DB
   
 #build the Next.js app
 RUN npm run build
