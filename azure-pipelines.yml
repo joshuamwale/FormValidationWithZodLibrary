@@ -49,14 +49,14 @@ stages:
               azureSubscription: $(acrServiceConnection) #using the same service connection
               scriptType: 'pscore'                       #run azure cli commands against an azure subscription in a ps core/shell script (Linux agent here - ubuntu-latest)
               scriptLocation: 'inlineScript'                    
-              inlineScript: |  
-                 az containerapp up \                        # create or update command for quickly deploying and configuring an Azure container app
-                 --name form-validation-app \  
-                 --resource-group Tellistic-azure-devops-RG \
-                 --image $(acrName).azurecr.io/$(imageName):latest \
-                 --ingress external \
-                 --target-port 3000                                    
-              echo "Deployment to ACA completed."  #run a shell script & print a msg 2 the console
-              displayName: 'Deployment Complete'
+              inlineScript: |                            #create or update command for quickly deploying and configuring an Azure container app
+                  az containerapp up \                        
+                  --name form-validation-app \  
+                  --resource-group Tellistic-azure-devops-RG \
+                  --image $(acrName).azurecr.io/$(imageName):latest \
+                  --ingress external \
+                  --target-port 3000                                    
+              echo "Deployment to ACA completed." #run a shell script & print a msg 2 the console
+            displayName: 'Deployment Complete'
 
 
