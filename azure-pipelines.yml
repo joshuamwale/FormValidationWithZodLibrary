@@ -9,7 +9,7 @@ pool:
 variables:
   imageName: 'form-validation-with-zod-library'
   acrName: 'tellisticcr'
-  acrServiceConnection: 'Tellistic Docker Container Registry'  # Service connection requires elevated Azure permission to create
+  acrServiceConnection: 'Tellistic Docker Container Registry Service Connection'  # Service connection requires elevated Azure permission to create
   
 stages:
   - stage: Build
@@ -42,10 +42,21 @@ stages:
     dependsOn: Build                               #run only after the Build stage completes
     jobs:
       - job: Deploy
-        displayName: 'Deploy Docker Image'
+        displayName: 'Deploy App to Azure Container Apps'
         steps:
-          - script: |                                 #run a shell script & print a msg 2 the console
-              echo "Deployment to ACA completed."
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: $(acrServiceConnection) #using the same service connection
+              scriptType: 'pscore'                       #run azure cli commands against an azure subscription in a ps core/shell script (Linux agent here - ubuntu-latest)
+              scriptLocation: 'inlineScript'                    
+              inlineScript: |  
+                 az containerapp up \                        # create or update command for quickly deploying and configuring an Azure container app
+                 --name form-validation-app \  
+                 --resource-group Tellistic-azure-devops-RG \
+                 --image $(acrName).azurecr.io/$(imageName):latest \
+                 --ingress external \
+                 --target-port 3000 \                                    
+              echo "Deployment to ACA completed."  #run a shell script & print a msg 2 the console
             displayName: 'Deployment Complete'
 
 
