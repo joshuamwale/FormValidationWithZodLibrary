@@ -55,7 +55,7 @@ stages:
                  --resource-group Tellistic-azure-devops-RG \
                  --image $(acrName).azurecr.io/$(imageName):latest \
                  --ingress external \
-                 --target-port 3000 \                                    
+                 --target-port 3000                                    
               echo "Deployment to ACA completed."  #run a shell script & print a msg 2 the console
               displayName: 'Deployment Complete'
 
