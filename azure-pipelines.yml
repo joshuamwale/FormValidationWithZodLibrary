@@ -42,10 +42,19 @@ stages:
     dependsOn: Build                               #run only after the Build stage completes
     jobs:
       - job: Deploy
-        displayName: 'Deploy Docker Image'
+        displayName: 'Deploy Docker Image ACA'
         steps:
-          - script: |                                 
-              echo "Deployment to ACA completed."
+          - task: AzureCLI@2
+            inputs: 
+              azureSubscription: $(acrServiceConnection)     #using the same service connection
+              scriptType: 'pscore'                        #running azure cli commands against an azure subscription in a ps core script (ubuntu-latest - Linux agent)
+              scriptLocation: 'inlineScript'
+              inlineScript: |     
+               az containerapp up \                        
+               --name form-validation-app \
+               --resource-group Tellistic-azure-devops-RG \
+               --image $(acrName).azurecr.io/$(imageName):latest                             
+               echo "Deployment to ACA completed."
             displayName: 'Deployment Complete'
 
 
