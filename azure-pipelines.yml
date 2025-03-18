@@ -50,8 +50,7 @@ stages:
               scriptType: 'bash'                        #running azure cli commands against an azure subscription in a ps core script (ubuntu-latest - Linux agent)
               scriptLocation: 'inlineScript'
               inlineScript: |     
-               az containerapp up \                        
-               --name form-validation-app \
+               az containerapp up -n form-validation-app \
                --resource-group Nextjs \
                --image $(acrName).azurecr.io/$(imageName):latest \
                --environment nextjsapps                           
