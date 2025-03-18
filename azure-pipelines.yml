@@ -10,7 +10,7 @@ variables:
   imageName: 'form-validation-with-zod-library'
   acrName: 'tellisticcr'
   acrServiceConnection: 'Tellistic Docker Container Registry Service Connection'  # Service connection requires elevated Azure permission to create
-  
+  armServiceConnection: 'Tellistic ARM Service Connection'
 stages:
   - stage: Build
     displayName: 'Build Docker Image'
@@ -46,7 +46,7 @@ stages:
         steps:
           - task: AzureCLI@2
             inputs: 
-              azureSubscription: $(acrServiceConnection)     #using the same service connection
+              azureSubscription: $(armServiceConnection)     #need to use ARM sservice connection
               scriptType: 'pscore'                        #running azure cli commands against an azure subscription in a ps core script (ubuntu-latest - Linux agent)
               scriptLocation: 'inlineScript'
               inlineScript: |     
@@ -57,4 +57,4 @@ stages:
                echo "Deployment to ACA completed."
             displayName: 'Deployment Complete'
 
-
+#az containerapp up : command for configure, deploy and update azure container app
