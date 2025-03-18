@@ -52,7 +52,7 @@ stages:
               inlineScript: |     
                az containerapp up \                        
                --name form-validation-app \
-               --resource-group Tellistic-azure-devops-RG \
+               --resource-group Nextjs \
                --image $(acrName).azurecr.io/$(imageName):latest                             
                echo "Deployment to ACA completed."
             displayName: 'Deployment Complete'
