@@ -53,7 +53,8 @@ stages:
                az containerapp up \                        
                --name form-validation-app \
                --resource-group Nextjs \
-               --image $(acrName).azurecr.io/$(imageName):latest                             
+               --image $(acrName).azurecr.io/$(imageName):latest \
+               --environment nextjsapps                           
                echo "Deployment to ACA completed."
             displayName: 'Deployment Complete'
 
