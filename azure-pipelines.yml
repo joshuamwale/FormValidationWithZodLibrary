@@ -47,7 +47,7 @@ stages:
           - task: AzureCLI@2
             inputs: 
               azureSubscription: $(armServiceConnection)     #need to use ARM sservice connection
-              scriptType: 'pscore'                        #running azure cli commands against an azure subscription in a ps core script (ubuntu-latest - Linux agent)
+              scriptType: 'bash'                        #running azure cli commands against an azure subscription in a ps core script (ubuntu-latest - Linux agent)
               scriptLocation: 'inlineScript'
               inlineScript: |     
                az containerapp up \                        
