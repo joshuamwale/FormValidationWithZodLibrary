@@ -33,7 +33,7 @@ stages:
             containerRegistry: $(acrServiceConnection)         #specify acr service connection
             repository: $(imageName)                           #name of the Docker repo
             command: 'buildAndPush'                            #this command builds the docker image & pushes it to the acr
-            Dockerfile: 'Dockerfile'                           #path to the dockerfile the pipeline                    
+            Dockerfile: '**/Dockerfile'                           #path to the dockerfile the pipeline                    
             tags: |
                 latest
 
