@@ -53,8 +53,8 @@ stages:
                az containerapp up -n form-validation-app \
                --resource-group Nextjs \
                --image $(acrName).azurecr.io/$(imageName):latest \
-               --environment nextjsapps                           
-               echo "Deployment to ACA completed."
+               --environment nextjsappenv                           
+               echo "Deployment to ACA successful."
             displayName: 'Deployment Complete'
 
 #az containerapp up : command for configure, deploy and update azure container app
