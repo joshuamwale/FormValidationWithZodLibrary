@@ -10,7 +10,7 @@ variables:
   imageName: 'form-validation-with-zod-library'
   acrName: 'tellisticcr'
   acrServiceConnection: 'Tellistic Docker Container Registry Service Connection'  # Service connection requires elevated Azure permission to create
-  armServiceConnection: 'ARM Service Connection'
+  armServiceConnection: 'Tellistic ARM Service Connection'
 stages:
   - stage: Build
     displayName: 'Build Docker Image'
