@@ -19,7 +19,7 @@ RUN npm run build
 FROM node:18-alpine
 
 #expose the port the app runs on
-EXPOSE 3000
+EXPOSE 8080
 
 #Start the Next.js app
 CMD ["npm", "start"]
